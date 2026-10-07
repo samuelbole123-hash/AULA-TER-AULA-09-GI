@@ -1,0 +1,541 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS  (MOBILE FIRST)
+   A base abaixo é a tela pequena. Telas
+   maiores só ACRESCENTAM regras em
+   @media (min-width) no final do arquivo.
+   ========================================= */
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f2f5f3;
+    color: #222;
+    overflow-wrap: break-word;
+}
+
+img { max-width: 100%; height: auto; }
+
+::selection { background-color: #164e36; color: white; }
+
+
+/* =========================================
+   CABEÇALHO (base: empilhado e centralizado)
+   ========================================= */
+
+header {
+    background-color: #1f6f4a;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+}
+
+.identidade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.identidade h1,
+.identidade p { margin-top: 0; margin-bottom: 0; }
+
+.nome-local::first-letter { font-size: 1.35em; font-weight: bold; }
+
+
+/* =========================================
+   MENU
+   ========================================= */
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 12px 16px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav a:hover { color: #d8f3e5; }
+
+nav a:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+
+/* =========================================
+   CONTEÚDO / CARDS DA PÁGINA DE DETALHES
+   ========================================= */
+
+main { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+
+.card {
+    background-color: white;
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   IMAGEM
+   ========================================= */
+
+.foto {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.foto:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   TABELA (no celular rola dentro dela mesma)
+   ========================================= */
+
+table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+}
+
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+
+th { background-color: #e4f0e9; }
+
+
+/* =========================================
+   LISTA DE COMODIDADES
+   ========================================= */
+
+.comodidades { padding-left: 25px; }
+.comodidades li { margin-bottom: 8px; }
+
+
+/* =========================================
+   LINK DE CONTATO
+   ========================================= */
+
+.link-contato {
+    position: relative;
+    display: inline-block;
+    padding: 8px 10px 8px 30px;
+    color: #155d3b;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.link-contato::before {
+    content: "→";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.link-contato:hover {
+    color: #0b3824;
+    background-color: #e4f0e9;
+    transform: translateX(3px);
+}
+
+.link-contato:hover::before { transform: translate(5px, -50%); }
+
+.link-contato:focus-visible {
+    outline: 3px solid #f0a202;
+    outline-offset: 3px;
+    border-radius: 4px;
+    background-color: #fff4d6;
+}
+
+
+/* =========================================
+   RODAPÉ DA PÁGINA DE DETALHES
+   ========================================= */
+
+footer {
+    background-color: #164e36;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer .menu-vertical ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+footer .menu-vertical a { display: block; padding: 10px 24px; }
+
+.voltar-inicio {
+    display: inline-block;
+    padding: 10px 18px;
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.voltar-inicio:focus-visible {
+    outline: 3px solid #f0a202;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+
+/* =========================================
+   PÁGINA INICIAL (CSS GRID)
+   Base mobile: uma coluna, tudo empilhado.
+   ========================================= */
+
+.pagina-inicial {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+        "topo"
+        "lado"
+        "conteudo"
+        "rodape";
+}
+
+.pagina-inicial header { grid-area: topo; }
+
+.pagina-inicial .lateral {
+    grid-area: lado;
+    background-color: #eaf1f5;
+    padding: 15px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.pagina-inicial main { grid-area: conteudo; }
+.pagina-inicial footer { grid-area: rodape; }
+
+.pagina-inicial .lateral h3 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #2986bd;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* no celular a lateral vira uma faixa de links */
+.pagina-inicial .lateral nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagina-inicial .lateral nav a {
+    display: block;
+    padding: 8px 12px;
+    color: #444;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagina-inicial .lateral nav a:hover { background-color: #dbe6ee; color: #2986bd; }
+
+.pagina-inicial header {
+    background-color: #2986bd;
+    gap: 10px;
+    padding: 15px 20px;
+}
+
+.pagina-inicial .identidade h1 { margin: 0; font-size: 20px; }
+.pagina-inicial .identidade p { margin: 0; font-size: 11px; }
+
+.pagina-inicial header nav ul { gap: 8px 20px; }
+
+.pagina-inicial header nav a {
+    display: block;
+    padding: 10px 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.pagina-inicial header nav .ativo { border-bottom: 3px solid #ffd43b; }
+
+.pagina-inicial header nav a:focus-visible {
+    outline: 3px solid #ffd43b;
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   ETAPA 1 - DESTAQUE
+   ========================================= */
+
+.pagina-inicial main {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.pagina-inicial .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.pagina-inicial .hero h2 { margin: 0 0 8px; font-size: 24px; color: #333; }
+.pagina-inicial .hero p { margin: 0; font-size: 13px; color: #555; }
+
+
+/* =========================================
+   ETAPA 2 - CARDS
+   auto-fit + minmax: o número de colunas
+   segue o espaço disponível.
+   ========================================= */
+
+.pagina-inicial .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 10px;
+    max-width: 1050px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.pagina-inicial .card {
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.pagina-inicial .card h3 { margin: 0 0 8px; color: #2ebd29; font-size: 14px; }
+.pagina-inicial .card p { margin: 0 0 5px; font-size: 12px; }
+.pagina-inicial .card a { color: #168a20; font-size: 11px; }
+
+
+/* =========================================
+   EVENTOS E CONTATO
+   ========================================= */
+
+.pagina-inicial .informacao {
+    max-width: 1050px;
+    margin: 20px 15px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.pagina-inicial .informacao h2 { margin-top: 0; }
+.pagina-inicial .informacao a { color: #168a20; }
+
+
+/* =========================================
+   SOBRE O LOCAL
+   ========================================= */
+
+.pagina-inicial .dados-local {
+    display: grid;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.pagina-inicial .estruturas {
+    columns: 2 200px;
+    column-gap: 30px;
+    padding-left: 20px;
+    margin: 10px 0 15px;
+    font-size: 14px;
+}
+
+.pagina-inicial .estruturas li {
+    margin-bottom: 4px;
+}
+
+
+/* =========================================
+   LISTA DE EVENTOS
+   ========================================= */
+
+.pagina-inicial .lista-eventos {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.pagina-inicial .lista-eventos li {
+    padding: 4px 0 4px 12px;
+    border-left: 4px solid #2986bd;
+    font-size: 14px;
+}
+
+.pagina-inicial .lista-eventos strong { display: block; color: #222; }
+
+.pagina-inicial .lista-eventos span {
+    display: block;
+    font-size: 12px;
+    color: #555;
+}
+
+.pagina-inicial .aviso-eventos { font-size: 12px; color: #555; }
+
+
+/* =========================================
+   ETAPA 3 - RODAPÉ
+   ========================================= */
+
+.pagina-inicial footer {
+    margin-top: auto;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.pagina-inicial footer p { margin: 0; font-size: 12px; }
+
+
+/* =========================================
+   TELAS MAIORES - breakpoint 700px
+   (escolhido por observação: abaixo disso o
+   menu não cabe ao lado da identidade e a
+   lateral de 220px espreme os cards)
+   ========================================= */
+
+@media (min-width: 700px) {
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .identidade { align-items: flex-start; text-align: left; }
+
+    nav ul { flex-wrap: nowrap; justify-content: flex-start; gap: 20px; }
+
+    main { margin: 30px auto; padding: 0 20px; }
+
+    .card { padding: 25px; }
+
+    table { display: table; overflow-x: visible; }
+
+    .pagina-inicial {
+        grid-template-columns: 220px minmax(0, 1fr);
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+            "topo topo"
+            "lado conteudo"
+            "rodape rodape";
+    }
+
+    .pagina-inicial header { padding: 12px 40px; }
+
+    .pagina-inicial .lateral {
+        padding: 20px 15px;
+        border-bottom: 0;
+        border-right: 1px solid #dcdcdc;
+    }
+
+    .pagina-inicial .lateral nav ul { flex-direction: column; flex-wrap: nowrap; }
+
+    .pagina-inicial .identidade { align-items: flex-start; text-align: left; }
+
+    .pagina-inicial header nav ul { gap: 20px; }
+
+    .pagina-inicial .hero h2 { font-size: 28px; }
+
+    .pagina-inicial .cards { padding: 0 20px; }
+
+    .pagina-inicial .informacao { margin: 20px auto; }
+}
+
+
+/* =========================================
+   REDUÇÃO DE ANIMAÇÕES
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .card:hover,
+    .foto:hover,
+    .link-contato:hover { transform: none; }
+
+    .link-contato:hover::before,
+    .link-contato:focus-visible::before { transform: translateY(-50%); }
+}
+
+img{max-width:100%;height:auto;}
+h1{font-size:clamp(2rem,5vw,3.5rem);}
+a,button{min-height:44px;min-width:44px;display:inline-flex;align-items:center;}
+:focus,:focus-visible{outline:3px solid #0a66cc;outline-offset:2px;}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:20px;gap:20px;flex-wrap:wrap;} .identidade{margin-right:auto;} nav ul{display:flex;gap:20px;list-style:none;padding:0;margin:0;}
